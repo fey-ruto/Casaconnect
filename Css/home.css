@@ -67,7 +67,7 @@ header {
 }
 
 .hero-section h1 {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Consolas', monospace;
     font-size: 3rem;
     margin: 0.5rem 0;
 }
