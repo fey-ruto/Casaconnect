@@ -8,8 +8,28 @@ body {
 header {
     position: relative;
     width: 100%;
-    background: #333;
+    height: 50%;
+    background: url('../Assests/Drone Residential Neighborhood.mp4') no-repeat center center/cover;
     color: white;
+}
+
+.video-background {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
 }
 
 .navbar {
