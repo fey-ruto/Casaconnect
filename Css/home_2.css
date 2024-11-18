@@ -59,6 +59,25 @@ header {
     text-decoration: none;
 }
 
+.hero-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-family: 'Georgia', serif;
+    font-size: 3rem;
+    margin: 0.5rem 0;
+}
+
+.hero-section p {
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+}
+
 main {
     display: flex;
     padding: 2rem;
