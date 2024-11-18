@@ -125,3 +125,68 @@ main {
     background-color: #007BFF;
     color: white;
 }
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    padding: 1rem;
+}
+
+.form-container {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 1rem;
+}
+
+.form-container label {
+    display: block;
+    text-align: left;
+    margin: 0.5rem 0 0.2rem;
+}
+
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-container button {
+    background-color: #007BFF;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+.form-container .toggle-link {
+    margin-top: 1rem;
+}
+
+.form-container .toggle-link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.form-container .toggle-link a:hover {
+    text-decoration: underline;
+}
