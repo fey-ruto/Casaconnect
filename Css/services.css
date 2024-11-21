@@ -42,6 +42,27 @@ header {
     text-decoration: underline;
 }
 
+.video-background {
+    position: fixed; /* Ensures the video stays fixed as the background */
+    top: 0;
+    left: 0;
+    width: 100%; /* Covers the full width of the viewport */
+    height: 100vh; /* Covers the full height of the viewport */
+    overflow: hidden;
+    z-index: -1; /* Ensures the video stays behind other content */
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%; /* Ensures the video always covers the width */
+    min-height: 100%; /* Ensures the video always covers the height */
+    width: auto; /* Keeps the aspect ratio */
+    height: auto; /* Keeps the aspect ratio */
+    transform: translate(-50%, -50%); /* Centers the video */
+}
+
 /* Services Section */
 .services-container {
     display: flex;
