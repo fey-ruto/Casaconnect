@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - CasaConnect</title>
+    <link rel="stylesheet" href="../Css/services.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">CasaConnect</div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="explore.html">Explore</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="services-container">
+            <div class="service-tab">
+                <img src="../Assets/consultation.jpg" alt="Consultation Icon">
+                <button class="service-button" onclick="navigateTo('consultation.html')">Consultation</button>
+            </div>
+            <div class="service-tab">
+                <img src="../Assets/property-evaluation.jpg" alt="Property Evaluation Icon">
+                <button class="service-button" onclick="navigateTo('property-evaluation.html')">Property Evaluation</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>
