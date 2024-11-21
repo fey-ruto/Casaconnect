@@ -56,8 +56,8 @@ header {
     position: absolute;
     top: 50%;
     left: 50%;
-    min-width: 80%; /* Ensures the video always covers the width */
-    min-height: 80%; /* Ensures the video always covers the height */
+    min-width: 10%; /* Ensures the video always covers the width */
+    min-height: 10%; /* Ensures the video always covers the height */
     width: auto; /* Keeps the aspect ratio */
     height: auto; /* Keeps the aspect ratio */
     transform: translate(-50%, -50%); /* Centers the video */
