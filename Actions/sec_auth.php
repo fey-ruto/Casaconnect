@@ -276,6 +276,6 @@ function clearFailedAttempts($ip) {
 }
 
 function sendVerificationEmail($email, $token) {
-    // Implement email sending logic here
-    // You can use PHPMailer or other email libraries
+    //  Email sending logic here is not yet implemented yet and will be soon.            
+    // We can use PHPMailer or other email libraries
 }
