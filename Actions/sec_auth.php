@@ -274,7 +274,7 @@ function clearFailedAttempts($ip) {
     $stmt->bind_param("s", $ip);
     $stmt->execute();
 }
-
+ 
 function sendVerificationEmail($email, $token) {
     //  Email sending logic here is not yet implemented yet and will be soon.            
     // We can use PHPMailer or other email libraries
