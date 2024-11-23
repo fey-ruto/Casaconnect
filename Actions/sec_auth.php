@@ -96,15 +96,15 @@ function attemptLogin($email, $password) {
             throw new Exception("Invalid credentials");
         }
         
-        // Clear failed attempts on successful login
+        // Clear failed attempts on successful login.
         clearFailedAttempts($_SERVER['REMOTE_ADDR']);
         
-        // Generate new session ID to prevent session fixation
+        // Generating new session ID to prevent session fixation attacks if necessary and prevent users from accessing the session again later.
         session_regenerate_id(true);
         
         startSession($user['id'], $user['first_name'], $user['last_name'], $user['role']);
         
-        // Set last login timestamp
+        // Set last login timestamp to current time.
         $updateStmt = $conn->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
         $updateStmt->bind_param("i", $user['id']);
         $updateStmt->execute();
@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
     attemptLogin($email, $password);
 }
 
-// register.php
+// register.php will redirect you to the login page if you have registered previously and have not already logged in yet.
 include '../db/connect.php';
 include '../functions/auth_functions.php';
 
@@ -158,7 +158,7 @@ function registerUser($firstName, $lastName, $email, $password) {
             throw new Exception("Password must be at least 8 characters long");
         }
         
-        // Check if email already exists
+        // Verifying if email already exists in the database
         $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -166,7 +166,7 @@ function registerUser($firstName, $lastName, $email, $password) {
             throw new Exception("Email already exists");
         }
         
-        // Hash password
+        // Hashing the user's password
         $hashedPassword = hashPassword($password);
         
         // Insert user
