@@ -59,4 +59,6 @@ CREATE TABLE `booked_property_valuations` (
     UNIQUE (`username`, `date`), -- Ensure unique date per user
     FOREIGN KEY (`username`) REFERENCES `users`(`username`) ON DELETE CASCADE
 );
-
+// Reservations
+// Waiting list
+//
