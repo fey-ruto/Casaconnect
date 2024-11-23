@@ -12,7 +12,7 @@ body {
     align-items: center;
     height: 100vh;
     /*background-color: #f4f4f4;*/
-    background-image: url("volcraft_login.jpeg"); 
+    background-image: url("../Assets/volcraft_login.jpeg"); 
     background-size: cover; /* This ensures the image covers the whole background */
     background-position: center; 
    /* background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -106,7 +106,7 @@ p a:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
+@media (max-width: 100px) {
     .form-container {
         padding: 15px;
     }
