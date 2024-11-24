@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (input.value.trim() && validator(input.value)) {
                 nextInput.disabled = false;
             } else {
-                nextInput.value = ''; // Clear next input
+                nextInput.value = ''; // Clearing the next input
                 nextInput.disabled = true;
             }
         });
