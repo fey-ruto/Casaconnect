@@ -1,6 +1,6 @@
 <?php
 // Import the configuration file
-require 'connect.php';
+require '../db/connect.php';
 
 // Start the session
 session_start();
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header("Location: dashboard.php");
                 exit;
             } else { // Regular user role
-                header("Location: home.php");
+                header("Location: ../Views/home_2.html");
                 exit;
             }
         } else {

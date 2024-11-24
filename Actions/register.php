@@ -12,14 +12,16 @@ $success = '';
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
-    $firstname = htmlspecialchars(trim($_POST['firstname']));
-    $lastname = htmlspecialchars(trim($_POST['lastname']));
+    $fname = htmlspecialchars(trim($_POST['firstname']));
+    $lname = htmlspecialchars(trim($_POST['lastname']));
     $username = htmlspecialchars(trim($_POST['username']));
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
+
     // Basic validation
-    if (empty($firstname) || empty($lastname) || empty($username) || empty($password) || empty($confirm_password)) {
+    // if (empty($firstname) || empty($lastname) || empty($username) || empty($password) || empty($confirm_password)) {
+    if (empty($fname) || empty($lname) || empty($username) || empty($password) || empty($confirm_password)) {
         $error = 'All fields are required.';
     } elseif ($password !== $confirm_password) {
         $error = 'Passwords do not match.';
@@ -29,8 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Check connection
         if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+            $error = "Unable to connect to the database. Please try again later.";
         }
+        
 
         // Check if username already exists
         $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
@@ -45,8 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert the new user into the database
+            // $stmt = $conn->prepare("INSERT INTO users (fname, lname, username, password, user_role) VALUES (?, ?, ?, ?, 2)");
+            // $stmt->bind_param("ssss", $firstname, $lastname, $username, $hashed_password);
+            
             $stmt = $conn->prepare("INSERT INTO users (fname, lname, username, password, user_role) VALUES (?, ?, ?, ?, 2)");
-            $stmt->bind_param("ssss", $firstname, $lastname, $username, $hashed_password);
+            $stmt->bind_param("ssss", $fname, $lname, $username, $hashed_password);
+
 
             if ($stmt->execute()) {
                 $success = 'Account created successfully! You can now <a href="login.php">login</a>.';
