@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Check if username already exists
         $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="signup-lastname">Last Name:</label>
                     <input type="text" id="signup-lastname" name="lastname" placeholder="Enter your last name" required>
 
-                    <label for="signup-email">Username:</label>
+                    <label for="signup-email">Email:</label>
                     <input type="text" id="signup-email" name="email" placeholder="Enter your email" required>
 
                     <label for="signup-password">Password:</label>
