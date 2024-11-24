@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CasaConnect - Real Estate</title>
-    <link rel="stylesheet" href="../Css/front.css">
+    <link rel="stylesheet" href="Css/front.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="logo">CasaConnect</div>
             <ul class="nav-links">
-                <li><a href="/Views/about.html">About</a></li>
-                <li><a href="/Views/services.html">Services</a></li>
+                <li><a href="Views/about.html">About</a></li>
+                <li><a href="Views/services.html">Services</a></li>
                 <li><a href="#">Explore</a></li>
-                <li><a href="/Actions/login.php">Login</a></li>
+                <li><a href="Actions/login.php">Login</a></li>
             </ul>
         </nav>
         <div class="video-background">
