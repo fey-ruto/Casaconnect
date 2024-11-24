@@ -8,11 +8,11 @@ session_start();
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
-    $email = $_POST['email'];
+    $username = $_POST['email']; // In the database, 'username' is used instead of 'email'
     $password = $_POST['password'];
 
     // Database connection
-    $conn = new mysqli('localhost', 'root', '', 'casconnect'); // Update 'database' with your DB name
+    $conn = new mysqli('localhost', 'root', '', 'casaconnect');
 
     // Check connection
     if ($conn->connect_error) {
@@ -20,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Secure query to check user credentials
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -33,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $user['password'])) {
             // Set session variables
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_email'] = $user['email'];
+            $_SESSION['username'] = $user['username'];
             $_SESSION['user_role'] = $user['user_role'];
 
             // Redirect based on user role
-            if ($user['user_role'] === '1') { // Admin role
+            if ($user['user_role'] === 1) { // Admin role
                 header("Location: dashboard.php");
                 exit;
             } else { // Regular user role
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Invalid password. Please try again.";
         }
     } else {
-        $error = "No account found with that email.";
+        $error = "No account found with that username.";
     }
 
     // Close the connection
@@ -56,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - CasaConnect</title>
-    <link rel="stylesheet" href="../Css/front.css"> <!-- Reusing the same CSS for consistent styling -->
+    <link rel="stylesheet" href="../Css/front.css">
 </head>
 
 <body>
@@ -71,8 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <nav class="navbar">
             <div class="logo">CasaConnect</div>
             <ul class="nav-links">
-                <li><a href="home.php">Home</a></li> <!-- Home nav-link -->
-                <li><a href="dashboard.php">Administrator</a></li> <!-- Administrator nav-link -->
+                <li><a href="home.php">Home</a></li>
+                <li><a href="dashboard.php">Administrator</a></li>
             </ul>
         </nav>
     </header>
@@ -81,15 +82,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section class="login-section">
             <div class="form-container">
                 <h2>Login</h2>
-                <?php
-                // Display error message if login fails
-                if (isset($error)) {
-                    echo "<p style='color: red;'>$error</p>";
-                }
-                ?>
-                <form id="login-form" class="form" action="login.php" method="post">
-                    <label for="login-email">Email:</label>
-                    <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+                <?php if (isset($error)) echo "<p style='color: red;'>$error</p>"; ?>
+                <form id="login-form" class="form" action="" method="post">
+                    <label for="login-email">Username:</label>
+                    <input type="text" id="login-email" name="email" placeholder="Enter your username" required>
 
                     <label for="login-password">Password:</label>
                     <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
@@ -97,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button type="submit" class="btn">Login</button>
                 </form>
                 <p class="toggle-link">
-                    Don't have an account? <a href="register.php">Sign Up</a> <!-- Sign-up link -->
+                    Don't have an account? <a href="register.php">Sign Up</a>
                 </p>
             </div>
         </section>
