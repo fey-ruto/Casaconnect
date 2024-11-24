@@ -1,43 +1,50 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const firstNameInput = document.getElementById('signup-firstname');
-    const lastNameInput = document.getElementById('signup-lastname');
-    const emailInput = document.getElementById('signup-email');
-    const passwordInput = document.getElementById('signup-password');
-    const confirmPasswordInput = document.getElementById('signup-confirm-password');
+    // Input field references
+    const inputs = {
+        firstName: document.getElementById('signup-firstname'),
+        lastName: document.getElementById('signup-lastname'),
+        email: document.getElementById('signup-email'),
+        password: document.getElementById('signup-password'),
+        confirmPassword: document.getElementById('signup-confirm-password'),
+    };
     const submitButton = document.querySelector('.btn');
 
-    function validateField(input, nextInput, validator = () => true) {
-        input.addEventListener('input', function () {
-            if (input.value.trim() && validator(input.value)) {
-                nextInput.disabled = false;
-            } else {
-                nextInput.value = ''; // Clearing the next input
-                nextInput.disabled = true;
+    // Validators for input fields are defined in the form element below.
+    const validators = {
+        email: (value) => /\S+@\S+\.\S+/.test(value), // Valid email format string..
+        password: (value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(value), // For strong password Mr. Sampah shouldn't have it easy Lol ....
+    };
+
+    // Disable fields and button initially, so as Mr. Sampah doesn't have a default button for input fields that are not required by the form element itself.
+    Object.values(inputs).forEach((input) => (input.disabled = true));
+    submitButton.disabled = true;
+
+    /**
+     * Generic function to enable or disable the next input based on validation.
+     * @param {HTMLElement} currentInput - Current input element
+     * @param {HTMLElement} nextInput - Next input element to enable/disable
+     * @param {Function} [validator] - Validation function (optional)
+     */
+    function handleValidation(currentInput, nextInput, validator = () => true) {
+        currentInput.addEventListener('input', function () {
+            const isValid = currentInput.value.trim() && validator(currentInput.value);
+            nextInput.disabled = !isValid;
+            if (!isValid) {
+                nextInput.value = ''; // Clear the next input if invalid
             }
         });
     }
 
-    function validatePassword(password) {
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-        return regex.test(password);
-    }
+    // Setup field validation chain
+    handleValidation(inputs.firstName, inputs.lastName); // User First Name -> User Last Name
+    handleValidation(inputs.lastName, inputs.email); // Last Name -> Email
+    handleValidation(inputs.email, inputs.password, validators.email); // Email -> Password
+    handleValidation(inputs.password, inputs.confirmPassword, validators.password); // Password -> Confirm Password
 
-    lastNameInput.disabled = true;
-    emailInput.disabled = true;
-    passwordInput.disabled = true;
-    confirmPasswordInput.disabled = true;
-    submitButton.disabled = true;
-
-    validateField(firstNameInput, lastNameInput);
-    validateField(lastNameInput, emailInput);
-    validateField(emailInput, passwordInput, (value) => /\S+@\S+\.\S+/.test(value));
-    validateField(passwordInput, confirmPasswordInput, validatePassword);
-
-    confirmPasswordInput.addEventListener('input', function () {
-        if (confirmPasswordInput.value === passwordInput.value && validatePassword(passwordInput.value)) {
-            submitButton.disabled = false;
-        } else {
-            submitButton.disabled = true;
-        }
+    // Confirm Password validation and button enabling
+    inputs.confirmPassword.addEventListener('input', function () {
+        const passwordsMatch = inputs.confirmPassword.value === inputs.password.value;
+        const passwordIsValid = validators.password(inputs.password.value);
+        submitButton.disabled = !(passwordsMatch && passwordIsValid);
     });
 });
