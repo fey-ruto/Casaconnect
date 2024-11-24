@@ -14,14 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
     $fname = htmlspecialchars(trim($_POST['firstname']));
     $lname = htmlspecialchars(trim($_POST['lastname']));
-    $username = htmlspecialchars(trim($_POST['username']));
+    $email = htmlspecialchars(trim($_POST['username']));
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
 
     // Basic validation
     // if (empty($firstname) || empty($lastname) || empty($username) || empty($password) || empty($confirm_password)) {
-    if (empty($fname) || empty($lname) || empty($username) || empty($password) || empty($confirm_password)) {
+    if (empty($fname) || empty($lname) || empty($email) || empty($password) || empty($confirm_password)) {
         $error = 'All fields are required.';
     } elseif ($password !== $confirm_password) {
         $error = 'Passwords do not match.';
@@ -51,12 +51,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // $stmt = $conn->prepare("INSERT INTO users (fname, lname, username, password, user_role) VALUES (?, ?, ?, ?, 2)");
             // $stmt->bind_param("ssss", $firstname, $lastname, $username, $hashed_password);
             
-            $stmt = $conn->prepare("INSERT INTO users (fname, lname, username, password, user_role) VALUES (?, ?, ?, ?, 2)");
+            $stmt = $conn->prepare("INSERT INTO users (fname, lname, email, password, user_role) VALUES (?, ?, ?, ?, 2)");
             $stmt->bind_param("ssss", $fname, $lname, $username, $hashed_password);
 
 
             if ($stmt->execute()) {
-                $success = 'Account created successfully! You can now <a href="login.php">login</a>.';
+                $success = 'Account created successfully!';
             } else {
                 $error = 'An error occurred. Please try again.';
             }
@@ -104,8 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="signup-lastname">Last Name:</label>
                     <input type="text" id="signup-lastname" name="lastname" placeholder="Enter your last name" required>
 
-                    <label for="signup-username">Username:</label>
-                    <input type="text" id="signup-username" name="username" placeholder="Enter your username" required>
+                    <label for="signup-email">Username:</label>
+                    <input type="text" id="signup-email" name="email" placeholder="Enter your email" required>
 
                     <label for="signup-password">Password:</label>
                     <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
