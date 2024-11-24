@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<p style='color: red;'>$error</p>";
                 }
                 ?>
-                <form id="login-form" class="form" action="" method="post">
+                <form id="login-form" class="form" action="login.php" method="post">
                     <label for="login-email">Email:</label>
                     <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
 
