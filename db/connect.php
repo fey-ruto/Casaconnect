@@ -2,7 +2,7 @@
 // Database connection file
 $servername = "localhost";
 $username = "root";       
-$password = "tr@$$";      
+$password = "";      
 $database = "casaconnect"; 
 
 // Create a new database connection
