@@ -11,8 +11,8 @@
         <nav class="navbar">
             <div class="logo">CasaConnect</div>
             <ul class="nav-links">
-                <li><a href="Views/about.html">About</a></li>
-                <li><a href="Views/services.html">Services</a></li>
+                <li><a href="../Views/about.html">About</a></li>
+                <li><a href="../Views/services.html">Services</a></li>
                 <li><a href="#">Explore</a></li>
                 <li><a href="./login.php">Login</a></li>
             </ul>
