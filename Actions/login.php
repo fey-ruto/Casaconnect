@@ -8,7 +8,7 @@ session_start();
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
-    $username = $_POST['email']; // In the database, 'username' is used instead of 'email'
+    $email = $_POST['email']; // In the database, 'username' is used instead of 'email'
     $password = $_POST['password'];
 
     // Database connection
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $user['password'])) {
             // Set session variables
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
             $_SESSION['user_role'] = $user['user_role'];
 
             // Redirect based on user role
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Invalid password. Please try again.";
         }
     } else {
-        $error = "No account found with that username.";
+        $error = "No account found with that email.";
     }
 
     // Close the connection
