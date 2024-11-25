@@ -37,11 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_role'] = $user['user_role'];
 
             // Redirect based on user role
-            if ($user['user_role'] === 2) { // Admin role
-                header("Location: ../Views/home_2.html");
+            if ($user['user_role'] === 1) { // Admin role
+                header("Location: ./dashboard.php");
                 exit;
             } else { 
-                echo "This user does not exist.";
+                echo "This user is not an administrator.";
                 exit;
             }
         } else {
@@ -73,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="logo">CasaConnect</div>
             < class="nav-links">
                 <li><a href="home.php">Home</a></li>
-                <li><a href="./admin_login.php">Administrator</a></li>
             </ul>
         </nav>
     </header>
