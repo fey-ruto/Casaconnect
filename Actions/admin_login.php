@@ -8,8 +8,8 @@ session_start();
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
-    $email = $_POST['email']; // In the database, 'username' is used instead of 'email'
-    $password = $_POST['password'];
+    $email = trim($_POST['email']); // In the database, 'username' is used instead of 'email'
+    $password = trim($_POST['password']);
 
     // Database connection
     $conn = new mysqli('localhost', 'root', '', 'casaconnect');
