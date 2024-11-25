@@ -28,8 +28,7 @@ header {
     height: auto;
     z-index: -1;
     transform: translate(-50%, -50%);
-}
-
+}/*
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -56,6 +55,37 @@ header {
 .nav-links a {
     color: white;
     text-decoration: none;
+}
+*/
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Center-align navigation items */
+    align-items: center;
+    background-color: #555; /* Match background color */
+    padding: 1rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem; /* Add spacing between nav links */
+    margin-left: auto;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem; /* Adjust font size */
+}
+
+.nav-links a:hover {
+    text-decoration: underline; /* Underline on hover */
 }
 
 .hero-section {
