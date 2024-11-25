@@ -2,7 +2,7 @@
 
 // Fetch available property valuation slots
 function getAvailableValuationSlots($conn) {
-    $stmt = $conn->prepare("SELECT id, date, time FROM booking_slots WHERE type = 'valuation' AND status = 'available'");
+    $stmt = $conn->prepare("SELECT id, date, time FROM property_valuation_slots WHERE status = 'available'");
     $stmt->execute();
     $result = $stmt->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
@@ -11,7 +11,7 @@ function getAvailableValuationSlots($conn) {
 // Book a property valuation slot
 function bookValuationSlot($conn, $slot_id, $user_id) {
     // Check if the slot is available
-    $stmt = $conn->prepare("SELECT status FROM booking_slots WHERE id = ? AND type = 'valuation'");
+    $stmt = $conn->prepare("SELECT status FROM property_valuation_slots WHERE id = ?");
     $stmt->bind_param("i", $slot_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -26,7 +26,7 @@ function bookValuationSlot($conn, $slot_id, $user_id) {
     }
 
     // Mark the slot as booked
-    $stmt = $conn->prepare("UPDATE booking_slots SET status = 'booked', user_id = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE property_valuation_slots SET status = 'booked', user_id = ? WHERE id = ?");
     $stmt->bind_param("ii", $user_id, $slot_id);
     if ($stmt->execute()) {
         return "Property valuation slot booked successfully!";
