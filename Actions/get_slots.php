@@ -1,27 +1,27 @@
 <?php
 include '../db/connect.php';
-include '../functions/consultation_func.php';
-include '../functions/prop_val_func.php';
 
-$type = $_GET['type']; // Get the slot type from query parameters
+// Get the table parameter from the query string
+$table = $_GET['table']; // consultation_slots or property_valuation_slots
 
 // Validate input
-if (!in_array($type, ['consultation', 'valuation'])) {
+if (!in_array($table, ['consultation_slots', 'property_valuation_slots'])) {
     http_response_code(400); // Bad Request
-    echo json_encode(['error' => 'Invalid slot type']);
+    echo json_encode(['error' => 'Invalid table name']);
     exit;
 }
 
-// Fetch available slots based on type
-$slots = [];
-if ($type === 'consultation') {
-    $slots = getAvailableConsultationSlots($conn);
-} elseif ($type === 'valuation') {
-    $slots = getAvailableValuationSlots($conn);
-}
+// Fetch available slots from the specified table
+$stmt = $conn->prepare("SELECT id, date, time FROM $table WHERE status = 'available'");
+$stmt->execute();
+$result = $stmt->get_result();
+$slots = $result->fetch_all(MYSQLI_ASSOC);
 
+// Return the slots as JSON
 header('Content-Type: application/json');
 echo json_encode($slots);
 
+$stmt->close();
 $conn->close();
 ?>
+
