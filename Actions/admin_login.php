@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header>
         <nav class="navbar">
             <div class="logo">CasaConnect</div>
-            < class="nav-links">
+            <class="nav-links">
                 <li><a href="home.php">Home</a></li>
             </ul>
         </nav>
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button type="submit" class="btn">Login</button>
                 </form>
                 <p class="toggle-link">
-                    Don't have an account? <a href="register.php">Sign Up</a>
+                    Not an administrator? <a href="login.php">Sign Up</a>
                 </p>
             </div>
         </section>
