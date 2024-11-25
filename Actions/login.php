@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user['user_role'] == 2) {
                 header("Location: ../Views/home_2.html");
                 exit;
-            } else ($user['user_role'] == 1) {
+            } elseif ($user['user_role'] == 1) {
                 header("Location: ../Views/admin_dashboard.html");
                 exit;
             }
