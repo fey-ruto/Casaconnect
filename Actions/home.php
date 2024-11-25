@@ -32,7 +32,7 @@
     </header>
     <main>
         <section class="estates-section">
-            <h2>New Estates</h2>
+            <h2>Recently Sold</h2>
             <div class="estates-grid">
                 <div class="estate-card">
                     <img src="../Assets/static/mch.jpg" alt="Modern Clubhouse, Paleto Bay">

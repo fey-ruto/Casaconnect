@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
         <section class="login-section">
             <div class="form-container">
-                <h2>Login</h2>
+                <h2>Administrator</h2>
                 <?php if (isset($error)) echo "<p style='color: red;'>$error</p>"; ?>
                 <form id="login-form" class="form" action="" method="post">
                     <label for="login-email">Email:</label>
