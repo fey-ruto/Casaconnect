@@ -5,18 +5,25 @@ $(document).ready(function () {
     slotsTable.html("<tr><td colspan='3'>Loading available slots...</td></tr>");
 
     // Fetch available slots for consultation
-    $.getJSON("../actions/get_slots.php?type=consultation", function (data) {
+    $.getJSON("../actions/get_slots.php?table=consultation_slots", function (data) {
         slotsTable.empty(); // Clear previous rows
 
         if (data.length > 0) {
             data.forEach(slot => {
+                let actionButton;
+                
+                // Determine which button to show based on slot status
+                if (slot.status === "available") {
+                    actionButton = `<button onclick="bookSlot(${slot.id})" class="book-btn">Book</button>`;
+                } else if (slot.status === "booked") {
+                    actionButton = `<button onclick="cancelSlot(${slot.id})" class="cancel-btn">Cancel</button>`;
+                }
+
                 slotsTable.append(`
                     <tr>
                         <td>${slot.date}</td>
                         <td>${slot.time}</td>
-                        <td>
-                            <button onclick="bookSlot(${slot.id})">Book</button>
-                        </td>
+                        <td>${actionButton}</td>
                     </tr>
                 `);
             });
@@ -31,11 +38,31 @@ $(document).ready(function () {
     window.bookSlot = function (slotId) {
         const userId = 1; // Replace with session user ID if logged in
 
-        $.post("../actions/book_slot.php", { slot_id: slotId, user_id: userId }, function (response) {
+        $.post("../actions/book_slot.php", { 
+            slot_id: slotId, 
+            user_id: userId, 
+            table: 'consultation_slots' 
+        }, function (response) {
             alert(response);
             location.reload(); // Refresh the page to show updated slots
         }).fail(function () {
             alert("Error booking slot. Please try again.");
+        });
+    };
+
+    // Cancel a slot
+    window.cancelSlot = function (slotId) {
+        const userId = 1; // Replace with session user ID if logged in
+
+        $.post("../actions/cancel_slot.php", { 
+            slot_id: slotId, 
+            user_id: userId, 
+            table: 'consultation_slots' 
+        }, function (response) {
+            alert(response);
+            location.reload(); // Refresh the page to show updated slots
+        }).fail(function () {
+            alert("Error canceling slot. Please try again.");
         });
     };
 });
