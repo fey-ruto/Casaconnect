@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <nav class="navbar">
             <div class="logo">CasaConnect</div>
             <class="nav-links">
-                <li><a href="home.php">Home</a></li>
+                <li><a href="./home.php">Home</a></li>
             </ul>
         </nav>
     </header>
