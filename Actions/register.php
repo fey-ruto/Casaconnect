@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt->execute()) {
                 $success = 'Account created successfully!';
+                header("Location: ../Views/home_2.html");
             } else {
                 $error = 'An error occurred. Please try again.';
             }
