@@ -2,17 +2,17 @@
 include '../db/connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $slot_id = $_POST['slot_id'];   // Slot ID to book
-    $user_id = $_POST['user_id'];  // User ID (from session or passed directly)
-    $table = $_POST['table'];      // Table name: 'consultation_slots' or 'property_valuation_slots'
+    $slot_id = $_POST['slot_id'];
+    $user_id = $_POST['user_id']; // Replace with session user ID if logged in
+    $table = $_POST['table'];      // Table name: 'property_valuation_slots' or 'consultation_slots'
 
     // Validate input
-    if (!in_array($table, ['consultation_slots', 'property_valuation_slots'])) {
+    if (!in_array($table, ['property_valuation_slots', 'consultation_slots'])) {
         echo "Error: Invalid table name.";
         exit;
     }
 
-    // Check if the slot is still available
+    // Check if the slot is available
     $stmt = $conn->prepare("SELECT status FROM $table WHERE id = ?");
     $stmt->bind_param("i", $slot_id);
     $stmt->execute();
@@ -25,11 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $slot = $result->fetch_assoc();
     if ($slot['status'] !== 'available') {
-        echo "Error: Slot is already booked.";
+        echo "Error: Slot already booked.";
         exit;
     }
 
-    // Book the slot by updating the status and linking it to the user
+    // Mark the slot as booked
     $stmt = $conn->prepare("UPDATE $table SET status = 'booked', user_id = ? WHERE id = ?");
     $stmt->bind_param("ii", $user_id, $slot_id);
 
@@ -43,4 +43,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 }
 ?>
-
