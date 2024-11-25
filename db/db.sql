@@ -47,7 +47,7 @@ CREATE TABLE `booked_consultations` (
     `date` DATE NOT NULL,
     `time` TIME NOT NULL,
     UNIQUE (`username`, `date`), -- Ensure unique date per user
-    FOREIGN KEY (`username`) REFERENCES `users`(`username`) ON DELETE CASCADE
+    FOREIGN KEY (`username`) REFERENCES `users`(`email`) ON DELETE CASCADE
 );
 
 -- Create the booked_property_valuations table
@@ -57,6 +57,6 @@ CREATE TABLE `booked_property_valuations` (
     `date` DATE NOT NULL,
     `time` TIME NOT NULL,
     UNIQUE (`username`, `date`), -- Ensure unique date per user
-    FOREIGN KEY (`username`) REFERENCES `users`(`username`) ON DELETE CASCADE
+    FOREIGN KEY (`username`) REFERENCES `users`(`email`) ON DELETE CASCADE
 );
 
