@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($type === 'consultation') {
         $result = bookConsultationSlot($conn, $slot_id, $user_id);
     } elseif ($type === 'valuation') {
-        $result = bookValuationSlot($conn, $slot_id, $user_id);
+        $result = bookValuationSlot($conn, $slot_id, $gituser_id);
     }
 
     echo $result;

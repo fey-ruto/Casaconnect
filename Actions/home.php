@@ -26,7 +26,7 @@
             <div class="hero-content">
                 <h1>Discover Your Dream Home</h1>
                 <p>With CasaConnect</p>
-                <button class="explore-btn">Explore</button>
+                <button class="explore-btn"><a href="./explore.php"></a>Explore</button>
             </div>
         </div>
     </header>
