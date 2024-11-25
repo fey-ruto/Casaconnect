@@ -7,8 +7,8 @@ session_start();
 
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
-    $email = trim($_POST['email']); 
+    // Retrieve and sanitize form data
+    $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
     // Database connection
@@ -19,29 +19,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Secure query to check user credentials
+    // Fetch user details securely
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Verify user credentials
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
+        $stored_hashed_password = $user['password'];
 
-        // Check if the password matches
-        if (password_verify($password, $user['password'])) {
+        // Verify the password
+        if (password_verify($password, $stored_hashed_password)) {
+            // Update the hash if needed
+            if (password_needs_rehash($stored_hashed_password, PASSWORD_DEFAULT)) {
+                $new_hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                // Update the database with the new hash
+                $update_stmt = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
+                $update_stmt->bind_param("ss", $new_hashed_password, $email);
+                $update_stmt->execute();
+            }
+
             // Set session variables
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['user_role'] = $user['user_role'];
 
             // Redirect based on user role
-            if ($user['user_role'] === 2) { // Admin role
+            if ($user['user_role'] == 2) {
                 header("Location: ../Views/home_2.html");
                 exit;
-            } else { 
-                echo "This user does not exist.";
+            } else ($user['user_role'] == 1) {
+                header("Location: ../Views/admin_dashboard.html");
                 exit;
             }
         } else {
@@ -51,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "No account found with that email.";
     }
 
-    // Close the connection
+    // Close the statement and connection
     $stmt->close();
     $conn->close();
 }
