@@ -4,17 +4,17 @@ require '../db/connect.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date = $_POST['date'];
     $time = $_POST['time'];
-    $type = $_POST['type']; // consultation or valuation
+    $table = $_POST['table']; // Name of the table: 'consultation_slots' or 'property_valuation_slots'
 
     // Validate input
-    if (!in_array($type, ['consultation', 'valuation'])) {
-        echo "Error: Invalid slot type";
+    if (!in_array($table, ['consultation_slots', 'property_valuation_slots'])) {
+        echo "Error: Invalid table name";
         exit;
     }
 
-    // Insert slot into the database
-    $stmt = $conn->prepare("INSERT INTO booking_slots (date, time, type) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $date, $time, $type);
+    // Insert slot into the respective table
+    $stmt = $conn->prepare("INSERT INTO $table (date, time, status) VALUES (?, ?, 'available')");
+    $stmt->bind_param("ss", $date, $time);
 
     if ($stmt->execute()) {
         echo "Slot created successfully!";
@@ -39,4 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $conn->close();
 }
+<<<<<<< HEAD
 ?>
+=======
+?>
+
+>>>>>>> 1bdadd6238121faf71ab1ab987eadb9bce9d8607
