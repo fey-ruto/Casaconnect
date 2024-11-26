@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Secure query to check user credentials
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT * FROM admins WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['user_role'] = $user['user_role'];
-
+            var_dump($user['user_role']);
             // Redirect based on user role
             if ($user['user_role'] == 1) { // Admin role
                 header("Location: ./dashboard.php");

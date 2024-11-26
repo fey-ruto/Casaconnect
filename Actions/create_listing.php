@@ -1,3 +1,36 @@
+<?php
+include '../db/config.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['property-name']);
+    $location = trim($_POST['property-location']);
+    $description = trim($_POST['property-description']);
+    $price = (float)$_POST['property-price'];
+
+    // Handle file uploads
+    $images = [];
+    foreach ($_FILES['property-images']['tmp_name'] as $key => $tmp_name) {
+        $filename = uniqid() . "-" . $_FILES['property-images']['name'][$key];
+        move_uploaded_file($tmp_name, "../uploads/" . $filename);
+        $images[] = "../uploads/" . $filename;
+    }
+
+    $images_path = implode(',', $images);
+
+    $stmt = $conn->prepare("INSERT INTO listings (property_name, location, description, price, images, status) VALUES (?, ?, ?, ?, ?, 'pending')");
+    $stmt->bind_param("sssd", $name, $location, $description, $price, $images_path);
+
+    if ($stmt->execute()) {
+        echo "Listing submitted for approval!";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +46,7 @@
         <nav class="navbar">
             <div class="logo">CasaConnect</div>
             <ul class="nav-links">
-                <li><a href="home_2.html">Home</a></li> <!-- Link back to regular admin home page -->
+                <li><a href="home_2.php">Home</a></li> <!-- Link back to regular admin home page -->
             </ul>
         </nav>
     </header>

@@ -28,43 +28,19 @@ header {
     height: auto;
     z-index: -1;
     transform: translate(-50%, -50%);
-}/*
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.6);
 }
 
-.navbar .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-}
-
-.nav-links li {
-    display: inline;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-}
-*/
-
-/* Navbar styling */
 .navbar {
     display: flex;
     justify-content: space-between; /* Center-align navigation items */
     align-items: center;
     background-color: #555; /* Match background color */
     padding: 1rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: regular;
 }
 
 .nav-links {

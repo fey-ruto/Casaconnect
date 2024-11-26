@@ -12,7 +12,9 @@
         <h1>Admin Dashboard</h1>
         <nav>
             <a href="../views/user_management.html" class="nav-button">User Management</a>
-            <a href="../views/estate_management.html" class="nav-button">Estate Management</a>
+            <a href="../views/listing_management.php" class="nav-button">Estate Management</a>
+            <a href="./pending_listings.php" class="nav-button">Pending Listings</a>
+
         </nav>
         <div id="analytics">
             <div class="analytics-item">

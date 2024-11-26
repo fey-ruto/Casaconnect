@@ -48,10 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Redirect based on user role
             if ($user['user_role'] == 2) {
-                header("Location: ../Views/home_2.html");
+                header("Location: ./home_2.php");
                 exit;
             } elseif ($user['user_role'] == 1) {
-                header("Location: ../Views/admin_dashboard.html");
+                header("Location: ./dashboard.php");
                 exit;
             }
         } else {

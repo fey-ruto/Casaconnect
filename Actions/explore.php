@@ -11,6 +11,17 @@ $result = $conn->query("SELECT * FROM listings WHERE status = 'approved'");
     <link rel="stylesheet" href="../css/explore.css">
 </head>
 <body>
+    <header>
+    <nav class="navbar">
+            <div class="logo">CasaConnect</div>
+            <ul class="nav-links">
+                <li><a href="./about.php">About</a></li>
+                <li><a href="./home.php">Home</a></li>
+                <li><a href="./services.php">Services</a></li>
+                <li><a href="./login.php">Login</a></li>
+            </ul>
+        </nav>
+    </header>
     <h1>Property Listings</h1>
     <div class="grid">
         <?php while ($row = $result->fetch_assoc()) { ?>

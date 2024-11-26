@@ -14,10 +14,10 @@
         <nav class="navbar">
             <div class="logo">CasaConnect</div>
             <ul class="nav-links">
-                <li><a href="about.html">About</a></li>
+                <li><a href="about.php">About</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Explore</a></li>
-                <li><a href="create_listing.html">My Listings</a></li>
+                <li><a href="create_listing.php">My Listings</a></li>
                 <li><a href="../functions/logout.php">Logout</a></li>
             </ul>
         </nav>
