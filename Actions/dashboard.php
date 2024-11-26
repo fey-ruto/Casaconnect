@@ -12,7 +12,7 @@
     <nav class="navbar">
             <div class="logo">CasaConnect</div>
             <class="nav-links">
-                <li><a href="./home.php">Home</a></li>
+                <li><a href="./home_2.php">Home</a></li>
                 <li><a href="./user_management.php">Users</a></li>
                 <li><a href="./listing_management.php">Listings</a></li>
                 <li><a href="./pending_listings.php">Pending Listings</a>
