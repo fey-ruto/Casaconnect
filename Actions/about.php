@@ -42,7 +42,7 @@
         <div class="team-grid">
             <!-- Team Member 1 -->
             <div class="team-member">
-                <img src="../assets/static/member1.jpg" alt="Chrys Elisée Gnagne">
+                <img src="../assets/static/teamlead.jpg" alt="Chrys Elisée Gnagne">
                 <h3>Chrys Elisée Gnagne</h3>
                 <p>Founder & CEO</p>
             </div>
