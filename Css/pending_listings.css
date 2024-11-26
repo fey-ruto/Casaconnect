@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.listing-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.listing-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.listing-item h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.listing-item p {
+    margin: 5px 0;
+}
+
+.listing-item button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.listing-item button[name="action"][value="approve"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.listing-item button[name="action"][value="reject"] {
+    background-color: #f44336;
+    color: white;
+}

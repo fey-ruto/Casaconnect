@@ -17,7 +17,6 @@
                 <li><a href="about.php">About</a></li>
                 <li><a href="service.php">Services</a></li>
                 <li><a href="explore.php">Explore</a></li>
-                <li><a href="#">My Listings</a></li>
                 <li><a href="../functions/logout.php">Logout</a></li>
             </ul>
         </nav>

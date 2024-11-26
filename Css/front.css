@@ -38,9 +38,10 @@ header {
     padding: 1rem;
 }
 
-.logo {
+.navbar .logo {
     font-size: 1.8rem;
     font-weight: regular;
+    color: white
 }
 
 .nav-links {
@@ -50,7 +51,7 @@ header {
     margin-left: auto;
 }
 
-.nav-links li {
+.nav-links li a {
     display: inline;
 }
 

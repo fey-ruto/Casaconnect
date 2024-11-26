@@ -1,30 +1,32 @@
 <?php
 require '../db/config.php';
 
-// Check for admin authentication (assuming admin role = 1)
+// Start session and validate admin
 session_start();
 if ($_SESSION['user_role'] !== 1) {
     header('Location: ../index.php');
     exit();
 }
 
-// Handle POST actions (approve/reject)
+// Handle approval or rejection
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $listing_id = (int)$_POST['id'];
     $action = $_POST['action'];
 
     if ($action === 'approve') {
         $stmt = $conn->prepare("UPDATE listings SET status = 'approved' WHERE id = ?");
-        $stmt->bind_param("i", $listing_id);
     } elseif ($action === 'reject') {
         $stmt = $conn->prepare("DELETE FROM listings WHERE id = ?");
-        $stmt->bind_param("i", $listing_id);
+    } else {
+        die('Invalid action.');
     }
 
+    $stmt->bind_param("i", $listing_id);
+
     if ($stmt->execute()) {
-        echo "Listing updated successfully!";
+        echo json_encode(['status' => 'success']);
     } else {
-        echo "Error: " . $conn->error;
+        echo json_encode(['status' => 'error', 'message' => $conn->error]);
     }
 
     $stmt->close();
@@ -32,59 +34,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-// Fetch pending listings with user information
-$result = $conn->query("
-    SELECT 
-        listings.id, 
-        listings.property_name, 
-        listings.location, 
-        listings.price, 
-        users.email 
-    FROM 
-        listings
-    JOIN 
-        users 
-    ON 
-        listings.user_id = users.email
-    WHERE 
-        listings.status = 'pending'
-");
-
+// Fetch pending listings
+$result = $conn->query("SELECT id, property_name, SUBSTRING(description, 1, 30) AS short_description, price, images FROM listings WHERE status = 'pending'");
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Pending Listings</title>
+    <link rel="stylesheet" href="../css/pending_listings.css">
 </head>
 <body>
-    <h2>Pending Listings</h2>
-    <table border="1">
-        <tr>
-            <th>Property Name</th>
-            <th>Location</th>
-            <th>Price</th>
-            <th>Submitted By</th>
-            <th>Actions</th>
-        </tr>
+    <h1>Pending Listings</h1>
+    <div class="listings-grid">
         <?php while ($row = $result->fetch_assoc()) { ?>
-            <tr>
-                <td><?php echo htmlspecialchars($row['property_name']); ?></td>
-                <td><?php echo htmlspecialchars($row['location']); ?></td>
-                <td><?php echo "$" . number_format($row['price'], 2); ?></td>
-                <td><?php echo htmlspecialchars($row['user_email']); ?></td>
-                <td>
-                    <form method="post" action="pending_listings.php" style="display:inline;">
-                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                        <button type="submit" name="action" value="approve">Approve</button>
-                    </form>
-                    <form method="post" action="pending_listings.php" style="display:inline;">
-                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                        <button type="submit" name="action" value="reject">Reject</button>
-                    </form>
-                </td>
-            </tr>
+            <div class="listing-item">
+                <img src="<?php echo htmlspecialchars(explode(',', $row['images'])[0]); ?>" alt="Property Image">
+                <h3><?php echo htmlspecialchars($row['property_name']); ?></h3>
+                <p>Description: <?php echo htmlspecialchars($row['short_description']); ?>...</p>
+                <p>Price: $<?php echo number_format($row['price'], 2); ?></p>
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" name="action" value="approve">Approve</button>
+                </form>
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" name="action" value="reject">Reject</button>
+                </form>
+            </div>
         <?php } ?>
-    </table>
+    </div>
 </body>
 </html>
