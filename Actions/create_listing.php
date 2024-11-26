@@ -7,6 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = trim($_POST['property-description']);
     $price = (float)$_POST['property-price'];
 
+    // Get user email from session
+    $user_email = $_SESSION['user_email'];
+    
     // Handle file uploads
     $images = [];
     foreach ($_FILES['property-images']['tmp_name'] as $key => $tmp_name) {
@@ -17,8 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $images_path = implode(',', $images);
 
-    $stmt = $conn->prepare("INSERT INTO listings (property_name, location, description, price, images, status) VALUES (?, ?, ?, ?, ?, 'pending')");
-    $stmt->bind_param("sssd", $name, $location, $description, $price, $images_path);
+    // Insert the listing into the database
+    $stmt = $conn->prepare("INSERT INTO listings (property_name, location, description, price, images, status, user_email) VALUES (?, ?, ?, ?, ?, 'pending', ?)");
+    $stmt->bind_param("sssds", $name, $location, $description, $price, $images_path, $user_email);
 
     if ($stmt->execute()) {
         echo "Listing submitted for approval!";
