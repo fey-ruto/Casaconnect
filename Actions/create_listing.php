@@ -91,8 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $images_path = !empty($images) ? implode(',', $images) : null;
 
     // Insert the listing into the database
-    $stmt = $conn->prepare("INSERT INTO listings (property_name, location, description, price, images, status, user_email) VALUES (?, ?, ?, ?, ?, 'pending', ?)");
-    $stmt->bind_param("sssds", $name, $location, $description, $price, $images_path, $user_email);
+    $stmt = $conn->prepare("INSERT INTO listings (property_name, location, description, price, images, status) VALUES (?, ?, ?, ?, ?, 'pending')");
+    $stmt->bind_param("sssds", $name, $location, $description, $price, $images_path);
+
 
     if ($stmt->execute()) {
         // Redirect the user to the home page after successful insertion
