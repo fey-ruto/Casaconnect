@@ -15,9 +15,9 @@
             <div class="logo">CasaConnect</div>
             <ul class="nav-links">
                 <li><a href="about.php">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Explore</a></li>
-                <li><a href="create_listing.php">My Listings</a></li>
+                <li><a href="service.php">Services</a></li>
+                <li><a href="explore.php">Explore</a></li>
+                <li><a href="#">My Listings</a></li>
                 <li><a href="../functions/logout.php">Logout</a></li>
             </ul>
         </nav>
@@ -44,7 +44,7 @@
                 <li>Property 2 - $750,000</li>
                 <li>Property 3 - $1,000,000</li>
             </ul>
-            <button class="create-listing-btn" onclick="window.location.href='create_listing.html'">Create New Listing</button>
+            <button class="create-listing-btn" onclick="window.location.href='./create_listing.php'">Create New Listing</button>
         </section>
 
         <section class="main-content">

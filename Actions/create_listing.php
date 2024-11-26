@@ -1,35 +1,59 @@
 <?php
-include '../db/config.php';
+// Include config file
+require '../db/config.php';
+
+// Start session
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get user email from session
+    $user_email = $_SESSION['user_email'];
+
+    // Gather form input
     $name = trim($_POST['property-name']);
     $location = trim($_POST['property-location']);
     $description = trim($_POST['property-description']);
     $price = (float)$_POST['property-price'];
 
-    // Get user email from session
-    $user_email = $_SESSION['user_email'];
-    
-    // Handle file uploads
+    // Initialize images array
     $images = [];
+
+    // Handle file uploads
     foreach ($_FILES['property-images']['tmp_name'] as $key => $tmp_name) {
-        $filename = uniqid() . "-" . $_FILES['property-images']['name'][$key];
-        move_uploaded_file($tmp_name, "../uploads/" . $filename);
-        $images[] = "../uploads/" . $filename;
+        // Validate file extension
+        $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $file_extension = pathinfo($_FILES['property-images']['name'][$key], PATHINFO_EXTENSION);
+
+        // Skip invalid file types
+        if (!in_array(strtolower($file_extension), $allowed_extensions)) {
+            continue; // Skip this file and move to the next one
+        }
+
+        $filename = uniqid() . "-" . basename($_FILES['property-images']['name'][$key]);
+        $upload_path = "../uploads/" . $filename;
+
+        // Attempt to move the uploaded file
+        if (move_uploaded_file($tmp_name, $upload_path)) {
+            $images[] = $upload_path; // Add successfully uploaded file to images array
+        }
     }
 
-    $images_path = implode(',', $images);
+    // Convert images array to a comma-separated string
+    $images_path = !empty($images) ? implode(',', $images) : null;
 
     // Insert the listing into the database
     $stmt = $conn->prepare("INSERT INTO listings (property_name, location, description, price, images, status, user_email) VALUES (?, ?, ?, ?, ?, 'pending', ?)");
     $stmt->bind_param("sssds", $name, $location, $description, $price, $images_path, $user_email);
 
     if ($stmt->execute()) {
-        echo "Listing submitted for approval!";
+        // Redirect the user to the home page after successful insertion
+        header("Location: ./home_2.php");
+        exit();
     } else {
-        echo "Error: " . $conn->error;
+        echo "Error: " . $stmt->error;
     }
 
+    // Close the statement and connection
     $stmt->close();
     $conn->close();
 }
