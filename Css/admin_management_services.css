@@ -3,6 +3,33 @@ body {
     padding: 20px;
 }
 
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: regular;
+    color: white
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem; /* Add spacing between nav links */
+    margin-left: auto;
+}
+
+.nav-links li a {
+    display: inline;
+}
+
+.nav-links a {
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem; /* Adjust font size */
+}
+
+.nav-links a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
 h1 {
     text-align: center;
     margin-bottom: 20px;
