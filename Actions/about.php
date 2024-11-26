@@ -44,25 +44,25 @@
             <div class="team-member">
                 <img src="../assets/static/teamlead.jpg" alt="Chrys Elisée Gnagne">
                 <h3>Chrys Elisée Gnagne</h3>
-                <p>Founder & CEO</p>
+                <p>Team Lead | Fullstacke</p>
             </div>
             <!-- Team Member 2 -->
             <div class="team-member">
                 <img src="../assets/static/member2.jpg" alt="Faith Ruto">
                 <h3>Faith Ruto</h3>
-                <p>HR Manager</p>
+                <p>Back End</p>
             </div>
             <!-- Team Member 3 -->
             <div class="team-member">
                 <img src="../assets/static/member3.jpg" alt="Nellie Trenyce">
                 <h3>Nellie Trenyce</h3>
-                <p>Office Manager</p>
+                <p>Front End</p>
             </div>
             <!-- Team Member 4 -->
             <div class="team-member">
                 <img src="../assets/static/member4.jpg" alt="Kobina Kyereboah-Coleman">
                 <h3>Kobina Kyereboah-Coleman</h3>
-                <p>Server Side</p>
+                <p>Server Side | Backend</p>
             </div>
         </div>
     </section>
