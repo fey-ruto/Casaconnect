@@ -60,7 +60,7 @@
             </div>
             <!-- Team Member 4 -->
             <div class="team-member">
-                <img src="../assets/static/member4.jpg" alt="Kobina Kyereboah-Coleman">
+                <img src="../assets/static/member_4.jpg" alt="Kobina Kyereboah-Coleman">
                 <h3>Kobina Kyereboah-Coleman</h3>
                 <p>Server Side | Backend</p>
             </div>
