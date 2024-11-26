@@ -1,6 +1,6 @@
 # CasaConnect 🏡
 
-## Overview
+## 🌟 Overview
 
 CasaConnect is an innovative real estate platform designed to revolutionize property marketing in Accra, Ghana. Our mission is to transform the traditional real estate listing experience by providing a comprehensive, user-friendly solution that connects property seekers with their ideal homes.
 
@@ -12,7 +12,7 @@ In Accra's real estate market, agents face significant challenges:
 - Lack of interactive property exploration tools
 - Inefficient buyer-property matching processes
 
-## Features
+## 🚀 Features
 
 ### For Property Seekers
 - **Advanced Search Functionality**
@@ -48,7 +48,7 @@ In Accra's real estate market, agents face significant challenges:
 - Responsive Web Design
 - Interactive User Interfaces
 
-## Getting Started
+## 🛠️ Installation
 
 ### Prerequisites
 - Web Server (Apache/Nginx)
