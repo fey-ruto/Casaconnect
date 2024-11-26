@@ -20,7 +20,17 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `casaconnect`;
 USE `casaconnect`;
 
--- Create the users table
+-- Administrators table
+CREATE TABLE `admin` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `fname` VARCHAR(100) NOT NULL,
+    `lname` VARCHAR(100) NOT NULL,
+    `email` VARCHAR(100) NOT NULL UNIQUE,
+    `password` VARCHAR(255) NOT NULL,
+    `user_role` TINYINT NOT NULL DEFAULT 1 -- Default to administrator
+);
+
+-- Users table
 CREATE TABLE `users` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `fname` VARCHAR(100) NOT NULL,
@@ -30,7 +40,7 @@ CREATE TABLE `users` (
     `user_role` TINYINT NOT NULL DEFAULT 2 -- Default to regular user
 );
 
--- Create the listings table
+-- Listings Table
 CREATE TABLE `listings` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `property_name` VARCHAR(200) NOT NULL,
@@ -40,6 +50,7 @@ CREATE TABLE `listings` (
     `images` TEXT -- Comma-separated paths for up to 10 images
 );
 
+-- Consultation Slots Table
 CREATE TABLE `consultation_slots` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,       -- Unique identifier for each slot
     `date` DATE NOT NULL,                      -- Date of the consultation slot
@@ -50,7 +61,7 @@ CREATE TABLE `consultation_slots` (
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE SET NULL -- Links to the user who booked the slot
 );
 
-
+-- Property Valuation Slots Table
 CREATE TABLE `property_valuation_slots` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,       -- Unique identifier for each slot
     `date` DATE NOT NULL,                      -- Date of the valuation slot

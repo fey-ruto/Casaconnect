@@ -44,7 +44,7 @@
             <div class="team-member">
                 <img src="../assets/static/teamlead.jpg" alt="Chrys Elisée Gnagne">
                 <h3>Chrys Elisée Gnagne</h3>
-                <p>Team Lead | Fullstacke</p>
+                <p>Team Lead | Fullstack</p>
             </div>
             <!-- Team Member 2 -->
             <div class="team-member">

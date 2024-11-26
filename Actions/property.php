@@ -2,13 +2,13 @@
 // Database connection
 include 'db_config.php';
 
-// Validate and sanitize `id`
+// Validate and sanitize `id` of a listing from the database
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id <= 0) {
     die("Invalid property ID.");
 }
 
-// Fetch property details
+// Fetch property(listing) details
 $query = "SELECT * FROM properties WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
