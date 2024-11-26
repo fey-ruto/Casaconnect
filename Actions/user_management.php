@@ -1,5 +1,5 @@
 <?php
-include '../db/config.php';
+require '../db/config.php';
 
 // Fetch users
 $result = $conn->query("SELECT id, fname, lname, email, user_role, created_at FROM users");
@@ -8,8 +8,10 @@ $result = $conn->query("SELECT id, fname, lname, email, user_role, created_at FR
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
-    <script src="user_management.js"></script>
+    <link rel="stylesheet" href="../css/user_management.css">
 </head>
 <body>
     <h2>Manage Users</h2>
@@ -59,3 +61,4 @@ $result = $conn->query("SELECT id, fname, lname, email, user_role, created_at FR
     </table>
 </body>
 </html>
+

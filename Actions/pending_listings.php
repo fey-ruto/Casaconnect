@@ -1,5 +1,5 @@
 <?php
-include '../db/config.php';
+require '../db/config.php';
 
 // Check for admin authentication (assuming admin role = 1)
 session_start();

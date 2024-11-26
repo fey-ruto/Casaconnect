@@ -56,7 +56,6 @@
                     </div>
                 </div>
             </div>
-            <button class="load-more-btn">Load More</button>
         </section>
     </main>
 </body>
