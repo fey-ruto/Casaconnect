@@ -163,3 +163,23 @@ INSERT INTO property_valuation_slots(date, time, status, user_id) VALUES
 ('2024-12-07', '11:00:00', 'available', NULL),
 ('2024-12-07', '12:00:00', 'available', NULL),
 ('2024-12-07', '13:00:00', 'available', NULL);
+
+
+CREATE TABLE `booked_slots` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,       -- Unique identifier for each booking
+    `user_id` INT NOT NULL,                    -- ID of the user who booked the slot
+    `slot_id` INT NOT NULL,                    -- ID of the booked slot
+    `booking_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Date and time the booking was made
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`slot_id`) REFERENCES `consultation_slots`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS `booked_slots` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,       -- Unique identifier for each booking
+    `user_id` INT NOT NULL,                    -- ID of the user who booked the slot
+    `slot_id` INT NOT NULL,                    -- ID of the booked slot
+    `type` ENUM('consultation', 'valuation') NOT NULL, -- Type of booking
+    `booking_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Date and time the booking was made
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`slot_id`) REFERENCES `property_valuation_slots`(`id`) ON DELETE CASCADE
+);
