@@ -3,23 +3,24 @@
 include 'db_config.php';
 
 // Validate and sanitize `id` of a listing from the database
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-if ($id <= 0) {
+    $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+    if ($id <= 0) {
     die("Invalid property ID.");
 }
 
 // Fetch property(listing) details
-$query = "SELECT * FROM properties WHERE id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$result = $stmt->get_result();
+    $query = "SELECT * FROM properties WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-$property = $result->fetch_assoc();
-if (!$property) {
+    $property = $result->fetch_assoc();
+    if (!$property) {
     die("Property not found.");
-}
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
