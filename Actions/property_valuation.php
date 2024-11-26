@@ -1,8 +1,8 @@
 <?php
 include '../db/config.php';
-include '../functions/prop_val_func.php';
+include '../functions/property_valuation_func.php';
 
-// Fetch available property valuation slots
+// Fetch available consultation slots
 $slots = getAvailableValuationSlots($conn);
 ?>
 <!DOCTYPE html>
@@ -10,8 +10,8 @@ $slots = getAvailableValuationSlots($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Valuation Booking</title>
-    <link rel="stylesheet" href="../css/property_valuation.css">
+    <title>Property Valuation - Casaconnect</title>
+    <link rel="stylesheet" href="../css/consultation.css">
 </head>
 <body>
     <header>
@@ -23,7 +23,7 @@ $slots = getAvailableValuationSlots($conn);
         </nav>
     </header>
     <main>
-        <h1>Book a Property Valuation</h1>
+        <h1>Book a Property Valuation Session</h1>
         <div id="available-slots">
             <h2>Available Slots</h2>
             <table border="1">
@@ -43,14 +43,14 @@ $slots = getAvailableValuationSlots($conn);
                                 <?php if ($slot['status'] === 'available'): ?>
                                     <form method="POST" action="../actions/book_slot.php">
                                         <input type="hidden" name="slot_id" value="<?= $slot['id'] ?>">
-                                        <input type="hidden" name="table" value="property_valuation_slots">
+                                        <input type="hidden" name="table" value="consultation_slots">
                                         <input type="hidden" name="user_id" value="1"> <!-- Replace with session user ID -->
                                         <button type="submit" class="book-btn">Book</button>
                                     </form>
                                 <?php else: ?>
                                     <form method="POST" action="../actions/cancel_slot.php">
                                         <input type="hidden" name="slot_id" value="<?= $slot['id'] ?>">
-                                        <input type="hidden" name="table" value="property_valuation_slots">
+                                        <input type="hidden" name="table" value="consultation_slots">
                                         <input type="hidden" name="user_id" value="1"> <!-- Replace with session user ID -->
                                         <button type="submit" class="cancel-btn">Cancel</button>
                                     </form>
