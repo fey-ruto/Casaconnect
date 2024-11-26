@@ -24,12 +24,9 @@ In Accra's real estate market, agents face significant challenges:
 - **Comprehensive Listing Tools**
   - Easy property upload
   - High-quality image galleries
-  - Virtual property tours
-  - Detailed property descriptions
+  - Short property descriptions
 
 ### Key Innovations
-- Interactive Maps
-- Virtual Property Tours
 - High-Resolution Photography
 - Personalized Search Algorithms
 
