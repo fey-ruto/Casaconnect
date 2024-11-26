@@ -1,7 +1,6 @@
 <?php
+// Include database connection
 include '../db/config.php';
-include '../functions/consultation_func.php';
-include '../functions/prop_val_func.php';
 
 $type = $_GET['type']; // Get the slot type from query parameters
 
@@ -12,16 +11,27 @@ if (!in_array($type, ['consultation', 'valuation'])) {
     exit;
 }
 
-// Fetch available slots based on type
-$slots = [];
-if ($type === 'consultation') {
-    $slots = getAvailableConsultationSlots($conn);
-} elseif ($type === 'valuation') {
-    $slots = getAvailableValuationSlots($conn);
+// Determine the table to query based on the type
+$table = ($type === 'consultation') ? 'consultation_slots' : 'property_valuation_slots';
+
+// Query to fetch slots
+$stmt = $conn->prepare("SELECT id, date, time, status FROM $table WHERE status IN ('available', 'booked')");
+if ($stmt) {
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $slots = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+} else {
+    http_response_code(500); // Internal Server Error
+    echo json_encode(['error' => 'Database query failed']);
+    $conn->close();
+    exit;
 }
 
+// Return slots as JSON
 header('Content-Type: application/json');
 echo json_encode($slots);
 
+// Close the database connection
 $conn->close();
 ?>
