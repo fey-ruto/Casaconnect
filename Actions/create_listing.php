@@ -35,6 +35,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Attempt to move the uploaded file
         if (move_uploaded_file($tmp_name, $upload_path)) {
             $images[] = $upload_path; // Add successfully uploaded file to images array
+        } elseif (!move_uploaded_file($tmp_name, $upload_path)) {
+            $error_code = $_FILES['property-images']['error'][$key];
+            switch ($error_code) {
+                case UPLOAD_ERR_INI_SIZE:
+                    die("Error uploading file: " . $_FILES['property-images']['name'][$key] . " - File exceeds the upload_max_filesize directive in php.ini.");
+                case UPLOAD_ERR_FORM_SIZE:
+                    die("Error uploading file: " . $_FILES['property-images']['name'][$key] . " - File exceeds the MAX_FILE_SIZE directive in the HTML form.");
+                case UPLOAD_ERR_PARTIAL:
+                    die("Error uploading file: " . $_FILES['property-images']['name'][$key] . " - File was only partially uploaded.");
+                case UPLOAD_ERR_NO_FILE:
+                    die("Error uploading file: No file was uploaded.");
+                case UPLOAD_ERR_NO_TMP_DIR:
+                    die("Error uploading file: Missing a temporary folder.");
+                case UPLOAD_ERR_CANT_WRITE:
+                    die("Error uploading file: " . $_FILES['property-images']['name'][$key] . " - Failed to write file to disk.");
+                case UPLOAD_ERR_EXTENSION:
+                    die("Error uploading file: " . $_FILES['property-images']['name'][$key] . " - File upload stopped by a PHP extension.");
+                default:
+                    die("Error uploading file: " . $_FILES['property-images']['name'][$key] . " - Unknown error.");
+            }
         }
     }
 
