@@ -1,8 +1,7 @@
-// user_management.js
 (() => {
     "use strict";
 
-    // Define API Endpoints
+    // Defining our API Endpoints
     const API_ENDPOINTS = {
         CREATE: "../actions/create_user.php",
         UPDATE: "../actions/update_user.php",
