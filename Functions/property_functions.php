@@ -1,5 +1,4 @@
 <?php
-
 // Fetch property valuation slots (both available and booked)
 function getAvailableValuationSlots($conn) {
     $stmt = $conn->prepare("SELECT id, date, time, status FROM property_valuation_slots WHERE status IN ('available', 'booked')");
@@ -60,8 +59,6 @@ function cancelValuationSlot($conn, $slot_id, $user_id) {
     if ($stmt->execute()) {
         return "Property valuation slot canceled successfully!";
     }
-
     return "Error: Unable to cancel slot.";
 }
-
 ?>

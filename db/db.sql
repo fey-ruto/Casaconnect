@@ -72,5 +72,6 @@ CREATE TABLE `property_valuation_slots` (
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE SET NULL -- Links to the user who booked the slot
 );
 
-
+ALTER TABLE `listings` 
+ADD COLUMN `status` ENUM('pending', 'approved', 'rejected') DEFAULT 'pending';
 

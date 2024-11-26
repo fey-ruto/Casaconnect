@@ -1,56 +1,27 @@
 <?php
-// Database connection
-require '../db/config.php'; // Separate config file with credentials
+include '../db/config.php';
 
-// Pagination setup
-$limit = 20;
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$offset = ($page - 1) * $limit;
-
-// Fetch property listings
-$query = "SELECT id, property_name, location, price, thumbnail FROM properties LIMIT ? OFFSET ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("ii", $limit, $offset);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$properties = $result->fetch_all(MYSQLI_ASSOC);
-
-// Count total listings for pagination
-$totalQuery = "SELECT COUNT(*) AS total FROM properties";
-$totalResult = $conn->query($totalQuery);
-$totalListings = $totalResult->fetch_assoc()['total'];
-$totalPages = ceil($totalListings / $limit);
-
+$result = $conn->query("SELECT * FROM listings WHERE status = 'approved'");
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Properties</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Explore - CasaConnect</title>
+    <link rel="stylesheet" href="../css/explore.css">
 </head>
 <body>
     <h1>Property Listings</h1>
-    <div class="property-grid">
-        <?php foreach ($properties as $property): ?>
-            <div class="property-card">
-                <img src="<?= htmlspecialchars($property['thumbnail']) ?>" alt="Property Image">
-                <h2><?= htmlspecialchars($property['property_name']) ?></h2>
-                <p>Location: <?= htmlspecialchars($property['location']) ?></p>
-                <p>Price: $<?= htmlspecialchars($property['price']) ?></p>
-                <a href="property.php?id=<?= htmlspecialchars($property['id']) ?>">View Details</a>
+    <div class="grid">
+        <?php while ($row = $result->fetch_assoc()) { ?>
+            <div class="grid-item">
+                <img src="<?php echo explode(',', $row['images'])[0]; ?>" alt="Property Image">
+                <h3><?php echo htmlspecialchars($row['property_name']); ?></h3>
+                <p>Location: <?php echo htmlspecialchars($row['location']); ?></p>
+                <p>Price: $<?php echo number_format($row['price'], 2); ?></p>
+                <a href="property.php?id=<?php echo $row['id']; ?>">View Details</a>
             </div>
-        <?php endforeach; ?>
-    </div>
-    <div class="pagination">
-        <?php if ($page > 1): ?>
-            <a href="explore.php?page=<?= $page - 1 ?>">Previous</a>
-        <?php endif; ?>
-        <?php if ($page < $totalPages): ?>
-            <a href="explore.php?page=<?= $page + 1 ?>">Next</a>
-        <?php endif; ?>
+        <?php } ?>
     </div>
 </body>
 </html>
