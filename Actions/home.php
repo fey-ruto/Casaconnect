@@ -13,7 +13,7 @@
             <ul class="nav-links">
                 <li><a href="./about.php">About</a></li>
                 <li><a href="./services.php">Services</a></li>
-                <li><a href="#">Explore</a></li>
+                <li><a href="./explore.php">Explore</a></li>
                 <li><a href="./login.php">Login</a></li>
             </ul>
         </nav>
