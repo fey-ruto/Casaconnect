@@ -25,7 +25,7 @@
         <section class="services-container">
             <div class="service-tab">
                 <img src="../assets/static/consult.jpg" alt="Consultation Icon">
-                <button class="service-button" onclick="navigateTo('consultation.php')">Consultation</button>
+                <button class="service-button" onclick="navigateTo('./consultation.php')">Consultation</button>
                 <p class="service-description">
                     Get expert advice tailored to your real estate needs. We help you make informed decisions for buying, selling, or investing in properties.
                 </p>

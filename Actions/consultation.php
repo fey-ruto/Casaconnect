@@ -6,7 +6,7 @@
     <title>Consultation Booking</title>
     <link rel="stylesheet" href="../css/consultation.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../Js/consultation.js" defer></script> <!-- External JS file -->
+    <script src="../js/consultation.js" defer></script> <!-- External JS file -->
 </head>
 <body>
     <header>
