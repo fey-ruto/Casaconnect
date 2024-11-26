@@ -1,6 +1,6 @@
 <?php
 // Database connection
-include 'db_config.php';
+require '../db/config.php';
 
 // Validate and sanitize `id` of a listing from the database
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
