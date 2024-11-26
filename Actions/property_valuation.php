@@ -1,3 +1,10 @@
+<?php
+include '../db/config.php';
+include '../functions/prop_val_func.php';
+
+// Fetch available property valuation slots
+$slots = getAvailableValuationSlots($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Valuation Booking</title>
     <link rel="stylesheet" href="../css/property_valuation.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../Js/property_valuation.js" defer></script> <!-- External JS File -->
 </head>
 <body>
     <header>
@@ -30,7 +35,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Slots will be dynamically added here -->
+                    <?php foreach ($slots as $slot): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($slot['date']) ?></td>
+                            <td><?= htmlspecialchars($slot['time']) ?></td>
+                            <td>
+                                <?php if ($slot['status'] === 'available'): ?>
+                                    <form method="POST" action="../actions/book_slot.php">
+                                        <input type="hidden" name="slot_id" value="<?= $slot['id'] ?>">
+                                        <input type="hidden" name="table" value="property_valuation_slots">
+                                        <input type="hidden" name="user_id" value="1"> <!-- Replace with session user ID -->
+                                        <button type="submit" class="book-btn">Book</button>
+                                    </form>
+                                <?php else: ?>
+                                    <form method="POST" action="../actions/cancel_slot.php">
+                                        <input type="hidden" name="slot_id" value="<?= $slot['id'] ?>">
+                                        <input type="hidden" name="table" value="property_valuation_slots">
+                                        <input type="hidden" name="user_id" value="1"> <!-- Replace with session user ID -->
+                                        <button type="submit" class="cancel-btn">Cancel</button>
+                                    </form>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
