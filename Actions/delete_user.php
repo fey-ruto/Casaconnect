@@ -1,5 +1,5 @@
 <?php
-include '../db/connect.php';
+include '../db/config.php';
 include '../utils/session.php';
 include 'role_control.php';
 

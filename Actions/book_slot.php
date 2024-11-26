@@ -1,5 +1,5 @@
 <?php
-include '../db/connect.php';
+include '../db/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $slot_id = $_POST['slot_id'];

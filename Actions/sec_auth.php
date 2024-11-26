@@ -1,6 +1,6 @@
 <?php
 // delete_user.php
-include '../db/connect.php';
+include '../db/config.php';
 include '../utils/session.php';
 include 'role_control.php';
 
@@ -65,7 +65,7 @@ if (isset($_POST['user_id']) && isset($_POST['csrf_token'])) {
 }
 
 // login.php
-include '../db/connect.php';
+include '../db/config.php';
 include '../utils/session.php';
 include '../functions/auth_functions.php';
 
@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
 }
 
 // register.php will redirect you to the login page if you have registered previously and have not already logged in yet.
-include '../db/connect.php';
+include '../db/config.php';
 include '../functions/auth_functions.php';
 
 function registerUser($firstName, $lastName, $email, $password) {

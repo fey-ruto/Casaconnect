@@ -1,5 +1,5 @@
 <?php
-include '../db/connect.php';
+include '../db/config.php';
 include '../functions/consultation_func.php';
 include '../functions/prop_val_func.php';
 

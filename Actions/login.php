@@ -1,6 +1,6 @@
 <?php
 // Import the configuration file
-require '../db/connect.php';
+require '../db/config.php';
 
 // Start the session
 session_start();

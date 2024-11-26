@@ -1,5 +1,5 @@
 <?php
-include '../db/connect.php';
+include '../db/config.php';
 
 $result = $conn->query("SELECT id, first_name, last_name, email, role, created_at FROM users");
 ?>

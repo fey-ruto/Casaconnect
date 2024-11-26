@@ -1,5 +1,5 @@
 <?php
-include '../../db/connect.php';
+include '../../db/config.php';
 include '../../functions/analytics_functions.php';
 
 $total_users = getTotalUsers($conn);
