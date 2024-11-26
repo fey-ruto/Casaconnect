@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CasaConnect - Real Estate</title>
-    <link rel="stylesheet" href="css/front.css">
+    <link rel="stylesheet" href="../css/front.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="logo">CasaConnect</div>
             <ul class="nav-links">
-                <li><a href="Views/about.html">About</a></li>
-                <li><a href="Views/services.html">Services</a></li>
+                <li><a href="../Views/about.html">About</a></li>
+                <li><a href="../Views/services.html">Services</a></li>
                 <li><a href="#">Explore</a></li>
-                <li><a href="Actions/login.php">Login</a></li>
+                <li><a href="./login.php">Login</a></li>
             </ul>
         </nav>
         <div class="video-background">
@@ -26,13 +26,13 @@
             <div class="hero-content">
                 <h1>Discover Your Dream Home</h1>
                 <p>With CasaConnect</p>
-                <button class="explore-btn">Explore</button>
+                <button class="explore-btn"><a href="./explore.php"></a>Explore</button>
             </div>
         </div>
     </header>
     <main>
         <section class="estates-section">
-            <h2>New Estates</h2>
+            <h2>Recently Sold</h2>
             <div class="estates-grid">
                 <div class="estate-card">
                     <img src="../assets/static/mch.jpg" alt="Modern Clubhouse, Paleto Bay">

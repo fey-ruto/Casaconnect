@@ -1,6 +1,6 @@
 <?php
 // Database connection
-require 'db_config.php'; // Separate config file with credentials
+require '../db/config.php'; // Separate config file with credentials
 
 // Pagination setup
 $limit = 20;

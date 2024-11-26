@@ -62,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $error = 'An error occurred. Please try again.';
             }
         }
-
         // Close the connection
         $stmt->close();
         $conn->close();

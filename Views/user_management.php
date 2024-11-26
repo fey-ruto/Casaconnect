@@ -21,9 +21,9 @@ $result = $conn->query("SELECT id, first_name, last_name, email, role, created_a
         </tr>
         <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
-                <td><?php echo $row['first_name'] . " " . $row['last_name']; ?></td>
+                <td><?php echo $row['fname'] . " " . $row['lname']; ?></td>
                 <td><?php echo $row['email']; ?></td>
-                <td><?php echo $row['role'] == 1 ? "Super Admin" : "Admin"; ?></td>
+                <td><?php echo $row['userrole'] == 1 ? "Super Admin" : "Admin"; ?></td>
                 <td><?php echo $row['created_at']; ?></td>
                 <td>
                     <a href="../actions/delete_user.php?id=<?php echo $row['id']; ?>">Delete</a>
