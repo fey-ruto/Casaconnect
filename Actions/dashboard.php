@@ -8,14 +8,19 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
 </head>
 <body>
-    <div id="dashboard">
-        <h1>Admin Dashboard</h1>
-        <nav>
-            <a href="../views/user_management.html" class="nav-button">User Management</a>
-            <a href="../views/listing_management.php" class="nav-button">Estate Management</a>
-            <a href="./pending_listings.php" class="nav-button">Pending Listings</a>
-
+    <header>
+    <nav class="navbar">
+            <div class="logo">CasaConnect</div>
+            <class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="./user_management.php">Users</a></li>
+                <li><a href="./listing_management.php">Listings</a></li>
+                <li><a href="./pending_listings.php">Pending</a></li>
+            </ul>
         </nav>
+    </header>
+    <div id="dashboard">
+        <h1>Analytics</h1>
         <div id="analytics">
             <div class="analytics-item">
                 <h2>Recent Estate Purchases (Last Month)</h2>

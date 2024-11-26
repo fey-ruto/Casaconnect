@@ -21,7 +21,7 @@ CREATE DATABASE IF NOT EXISTS `casaconnect`;
 USE `casaconnect`;
 
 -- Administrators table
-CREATE TABLE `admin` (
+CREATE TABLE `admins` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `fname` VARCHAR(100) NOT NULL,
     `lname` VARCHAR(100) NOT NULL,

@@ -21,7 +21,8 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 1rem;
+    gap: 2rem; /* Add spacing between nav links */
+    margin-left: auto;
 }
 
 .nav-links li {

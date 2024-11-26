@@ -11,6 +11,6 @@
     <div id="estate-list">
         <!-- Estate list will be populated by JavaScript -->
     </div>
-    <script src="../Js/listing_management.js"></script>
+    <script src="../js/listing_management.js"></script>
 </body>
 </html>

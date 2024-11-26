@@ -50,10 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user['user_role'] == 2) {
                 header("Location: ./home_2.php");
                 exit;
-            } elseif ($user['user_role'] == 1) {
-                header("Location: ./dashboard.php");
-                exit;
-            }
+            } 
         } else {
             $error = "Invalid password. Please try again.";
         }
