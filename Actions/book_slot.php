@@ -4,7 +4,7 @@ include '../db/config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $slot_id = $_POST['slot_id'];
     $user_id = $_POST['user_id']; // Replace with session user ID if logged in
-    $table = $_POST['table'];      // Table name: 'property_valuation_slots' or 'consultation_slots'
+    $table = $_POST['table'];     // Table name: 'property_valuation_slots' or 'consultation_slots'
 
     // Validate input
     if (!in_array($table, ['property_valuation_slots', 'consultation_slots'])) {
@@ -29,12 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Book the slot based on type
-    $result = "";
-    if ($type === 'consultation') {
-        $result = bookConsultationSlot($conn, $slot_id, $user_id);
-    } elseif ($type === 'valuation') {
-        $result = bookValuationSlot($conn, $slot_id, $user_id);
+    // Book the slot
+    $stmt = $conn->prepare("UPDATE $table SET status = 'booked', user_id = ? WHERE id = ?");
+    $stmt->bind_param("ii", $user_id, $slot_id);
+
+    if ($stmt->execute()) {
+        echo "Slot booked successfully!";
+    } else {
+        echo "Error: Unable to book slot.";
     }
 
     $stmt->close();
