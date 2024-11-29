@@ -32,7 +32,7 @@
             </div>
             <div class="service-tab">
                 <img src="../assets/static/property_valuation.avif" alt="Property Evaluation Icon">
-                <button class="service-button" onclick="navigateTo('property_valuation.php')">Property Valuation</button>
+                <button class="service-button" onclick="navigateTo('./property_valuation.php')">Property Valuation</button>
                 <p class="service-description">
                     Discover the true value of your property with our comprehensive evaluation services, ensuring accurate market insights and pricing.
                 </p>

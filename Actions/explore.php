@@ -1,6 +1,5 @@
 <?php
 include '../db/config.php';
-
 $result = $conn->query("SELECT * FROM listings WHERE status = 'approved'");
 ?>
 
