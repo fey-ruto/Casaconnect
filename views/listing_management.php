@@ -8,11 +8,19 @@ include "../actions/listing_operations.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewsport" content="width=device-width, initial-scale=1.0">
-    <title>Estate Management</title>
+    <title>Listing Management - CasaConnect</title>
     <link rel="stylesheet" href="../css/listing_management.css">
 </head>
 <body>
-    <h1>Estate Management</h1>
+    <header>
+    <nav class="navbar">
+            <div class="logo">CasaConnect</div>
+            <ul class="nav-links">
+                <li><a href="../actions/dashboard.php">Back</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Listings</h1>
     <div id="estate-list">
         <?php if (empty($listings)): ?>
             <p>No listings available.</p>
