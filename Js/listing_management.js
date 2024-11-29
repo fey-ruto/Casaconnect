@@ -1,22 +1,37 @@
-// Dummy data for demonstration purposes
-const estates = [
-    { id: 1, name: 'Sunset Villa', location: 'New York', price: '$500,000' },
-    { id: 2, name: 'Ocean Breeze Apartment', location: 'Miami', price: '$300,000' },
-    { id: 3, name: 'Mountain Retreat', location: 'Denver', price: '$700,000' }
-];
+document.addEventListener('DOMContentLoaded', () => {
+    // Event listeners for edit and delete buttons
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    const editButtons = document.querySelectorAll('.edit-btn');
 
-function displayEstates() {
-    const estateList = document.getElementById('estate-list');
-    estates.forEach(estate => {
-        const estateCard = document.createElement('div');
-        estateCard.className = 'estate-card';
-        estateCard.innerHTML = `
-            <p><strong>Name:</strong> ${estate.name}</p>
-            <p><strong>Location:</strong> ${estate.location}</p>
-            <p><strong>Price:</strong> ${estate.price}</p>
-        `;
-        estateList.appendChild(estateCard);
+    // Delete Listing
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const listingId = e.target.closest('tr').dataset.id;
+            if (confirm('Are you sure you want to delete this listing?')) {
+                fetch('listing_operations.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action: 'delete', id: listingId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        e.target.closest('tr').remove();
+                    } else {
+                        alert('Failed to delete listing.');
+                    }
+                });
+            }
+        });
     });
-}
 
-document.addEventListener('DOMContentLoaded', displayEstates);
+    // Edit Listing (you can extend this to show an edit form/modal)
+    editButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const listingId = e.target.closest('tr').dataset.id;
+            window.location.href = `edit_listing.php?id=${listingId}`;
+        });
+    });
+});

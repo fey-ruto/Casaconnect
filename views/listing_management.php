@@ -1,5 +1,6 @@
 <?php
 include "../actions/listing_management.php";
+include "../actions/listing_operations.php";
 ?>
 
 <!DOCTYPE html>
