@@ -46,8 +46,8 @@ header {
     position: fixed; /* Ensures the video stays fixed as the background */
     top: 0;
     left: 0;
-    width: 100%; /* Covers the full width of the viewport */
-    height: 100vh; /* Covers the full height of the viewport */
+    width: 100%; /* Covers the full width of the viewsport */
+    height: 100vh; /* Covers the full height of the viewsport */
     overflow: hidden;
     z-index: -1; /* Ensures the video stays behind other content */
 }

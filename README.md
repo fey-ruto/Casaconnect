@@ -1,6 +1,6 @@
 # CasaConnect 🏡
 
-## 🌟 Overview
+## 🌟 Overviews
 
 CasaConnect is an innovative real estate platform designed to revolutionize property marketing in Accra, Ghana. Our mission is to transform the traditional real estate listing experience by providing a comprehensive, user-friendly solution that connects property seekers with their ideal homes.
 
@@ -33,7 +33,7 @@ In Accra's real estate market, agents face significant challenges:
 ## 💻 Tech Stack
 
 ### Frontend
-[HTML5](https://github.com/fey-ruto/Casaconnect/tree/566b3c86bef587e2083a53cb141b32a18e3199cc/View)
+[HTML5](https://github.com/fey-ruto/Casaconnect/tree/566b3c86bef587e2083a53cb141b32a18e3199cc/views)
 [CSS3](https://github.com/fey-ruto/Casaconnect/tree/a584e3fa72f0087a960559fbeb072233adaa8158/Css)
 [JavaScript](https://github.com/fey-ruto/Casaconnect/tree/a584e3fa72f0087a960559fbeb072233adaa8158/Js)
 

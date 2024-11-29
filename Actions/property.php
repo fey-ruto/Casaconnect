@@ -25,7 +25,7 @@ require '../db/config.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewsport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($property['property_name']) ?></title>
     <link rel="stylesheet" href="styles.css">
 </head>

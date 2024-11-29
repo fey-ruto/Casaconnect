@@ -9,7 +9,7 @@ $result = $conn->query("SELECT id, fname, lname, email, user_role, created_at FR
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewsport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
     <link rel="stylesheet" href="../css/user_management.css">
 </head>

@@ -53,7 +53,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewsport" content="width=device-width, initial-scale=1.0">
         <title>Pending Listings</title>
         <link rel="stylesheet" href="../css/pending_listings.css">
     </head>

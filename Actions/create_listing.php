@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewsport" content="width=device-width, initial-scale=1.0">
     <title>Create New Listing - CasaConnect</title>
     <link rel="stylesheet" href="../css/create_listing.css"> <!-- Styles for this page -->
 </head>

@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt->execute()) {
                 $success = 'Account created successfully!';
-                header("Location: ../Views/home_2.html");
+                header("Location: ../viewss/home_2.html");
             } else {
                 $error = 'An error occurred. Please try again.';
             }
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewsport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - CasaConnect</title>
     <link rel="stylesheet" href="../css/front.css">
 </head>

@@ -29,7 +29,7 @@ $result = $conn->query("SELECT * FROM listings WHERE status = 'approved'");
                 <h3><?php echo htmlspecialchars($row['property_name']); ?></h3>
                 <p>Location: <?php echo htmlspecialchars($row['location']); ?></p>
                 <p>Price: $<?php echo number_format($row['price'], 2); ?></p>
-                <a href="property.php?id=<?php echo $row['id']; ?>">View Details</a>
+                <a href="property.php?id=<?php echo $row['id']; ?>">views Details</a>
             </div>
         <?php } ?>
     </div>

@@ -44,13 +44,13 @@ function deleteUser($userId) {
         
         $conn->commit();
         $_SESSION['success_message'] = "User deleted successfully";
-        header("Location: ../view/user_management.php");
+        header("Location: ../views/user_management.php");
         exit();
         
     } catch (Exception $e) {
         $conn->rollback();
         $_SESSION['error_message'] = $e->getMessage();
-        header("Location: ../view/user_management.php");
+        header("Location: ../views/user_management.php");
         exit();
     }
 }
@@ -58,7 +58,7 @@ function deleteUser($userId) {
 if (isset($_POST['user_id']) && isset($_POST['csrf_token'])) {
     if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         $_SESSION['error_message'] = "Invalid request";
-        header("Location: ../view/user_management.php");
+        header("Location: ../views/user_management.php");
         exit();
     }
     deleteUser($_POST['user_id']);
@@ -110,12 +110,12 @@ function attemptLogin($email, $password) {
         $updateStmt->execute();
         
         $_SESSION['success_message'] = "Welcome back, {$user['first_name']}!";
-        header("Location: ../view/admin/dashboard.php");
+        header("Location: ../views/admin/dashboard.php");
         exit();
         
     } catch (Exception $e) {
         $_SESSION['error_message'] = $e->getMessage();
-        header("Location: ../view/login.php");
+        header("Location: ../views/login.php");
         exit();
     }
 }
@@ -123,7 +123,7 @@ function attemptLogin($email, $password) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
     if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         $_SESSION['error_message'] = "Invalid request";
-        header("Location: ../view/login.php");
+        header("Location: ../views/login.php");
         exit();
     }
     
@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
     
     if (!$email || !$password) {
         $_SESSION['error_message'] = "All fields are required";
-        header("Location: ../view/login.php");
+        header("Location: ../views/login.php");
         exit();
     }
     
@@ -191,13 +191,13 @@ function registerUser($firstName, $lastName, $email, $password) {
         sendVerificationEmail($email, $token);
         
         $_SESSION['success_message'] = "Registration successful! Please check your email to verify your account.";
-        header("Location: ../view/login.php");
+        header("Location: ../views/login.php");
         exit();
         
     } catch (Exception $e) {
         $conn->rollback();
         $_SESSION['error_message'] = $e->getMessage();
-        header("Location: ../view/register.php");
+        header("Location: ../views/register.php");
         exit();
     }
 }
@@ -205,7 +205,7 @@ function registerUser($firstName, $lastName, $email, $password) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
     if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
         $_SESSION['error_message'] = "Invalid request";
-        header("Location: ../view/register.php");
+        header("Location: ../views/register.php");
         exit();
     }
     
@@ -216,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
     
     if (!$firstName || !$lastName || !$email || !$password) {
         $_SESSION['error_message'] = "All fields are required";
-        header("Location: ../view/register.php");
+        header("Location: ../views/register.php");
         exit();
     }
     
@@ -229,13 +229,13 @@ include '../utils/session.php';
 function checkRole($requiredRole) {
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
         $_SESSION['error_message'] = "Please log in to access this page";
-        header("Location: ../view/login.php");
+        header("Location: ../views/login.php");
         exit();
     }
     
     if ($_SESSION['role'] > $requiredRole) {
         $_SESSION['error_message'] = "You don't have permission to access this page";
-        header("Location: ../view/admin/dashboard.php");
+        header("Location: ../views/admin/dashboard.php");
         exit();
     }
     
@@ -244,7 +244,7 @@ function checkRole($requiredRole) {
         session_unset();
         session_destroy();
         $_SESSION['error_message'] = "Session expired. Please log in again";
-        header("Location: ../view/login.php");
+        header("Location: ../views/login.php");
         exit();
     }
     

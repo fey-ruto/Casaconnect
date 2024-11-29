@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewsport" content="width=device-width, initial-scale=1.0">
     <title>Home - CasaConnect User</title>
     <link rel="stylesheet" href="../css/front.css"> <!-- Base styles -->
     <link rel="stylesheet" href="../css/home_2.css"> <!-- Specific styles for home_2 page -->
@@ -48,7 +48,7 @@
 
         <section class="main-content">
             <h2>Welcome to Your Dashboard</h2>
-            <p>Here you can manage your uploaded listings, view statistics, and more.</p>
+            <p>Here you can manage your uploaded listings, views statistics, and more.</p>
         </section>
     </main>
     <script src="../js/logout.js"></script>
