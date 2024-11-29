@@ -1,5 +1,5 @@
 <?php
-include "../actions/createlisting.php"
+include "../actions/update_listing.php";
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +7,7 @@ include "../actions/createlisting.php"
 <head>
     <meta charset="UTF-8">
     <meta name="viewsport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Listing - CasaConnect</title>
+    <title>Update Listing - CasaConnect</title>
     <link rel="stylesheet" href="../css/create_listing.css"> <!-- Styles for this page -->
 </head>
 <body>
@@ -15,14 +15,14 @@ include "../actions/createlisting.php"
         <nav class="navbar">
             <div class="logo">CasaConnect</div>
             <ul class="nav-links">
-                <li><a href="home_2.php">Home</a></li> <!-- Link back to regular admin home page -->
+                <li><a href="../views/listing_management.php">Back</a></li> <!-- Link back to regular admin home page -->
             </ul>
         </nav>
     </header>
     <main>
         <section class="create-listing-section">
             <div class="form-container">
-                <h2>Create New Listing</h2>
+                <h2>Update Listing</h2>
                 <form id="create-listing-form" action="#" method="post" enctype="multipart/form-data">
                     <label for="property-name">Property Name:</label>
                     <input type="text" id="property-name" name="property-name" placeholder="Enter property name" required>
@@ -39,12 +39,12 @@ include "../actions/createlisting.php"
                     <label for="property-images">Images:</label>
                     <input type="file" id="property-images" name="property-images[]" accept="image/*" multiple required>
 
-                    <button type="submit" class="btn create-btn">Create</button>
-                    <button type="button" class="btn cancel-btn" onclick="window.location.href='home_2.html'">Cancel</button>
+                    <button type="submit" class="btn create-btn">Save</button>
+                    <button type="button" class="btn cancel-btn" onclick="window.location.href='../views/listing_management.php'">Cancel</button>
                 </form>
             </div>
         </section>
     </main>
+    <script src="../js/validate_listing.js" defer></script>
 </body>
-
 </html>

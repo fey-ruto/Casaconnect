@@ -47,14 +47,14 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'
     // Return JSON response if it's an AJAX request
     echo json_encode(['status' => 'success', 'listings' => $listings]);
 } else {
-    // Otherwise, render the HTML page normally
-    ?>
+// Otherwise, render the HTML page normally
+?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewsport" content="width=device-width, initial-scale=1.0">
-        <title>Pending Listings</title>
+        <title>Pending Listings - CasaConnect</title>
         <link rel="stylesheet" href="../css/pending_listings.css">
     </head>
     <body>

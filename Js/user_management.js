@@ -63,22 +63,29 @@
 
     // Edit User
     const editUser = async (id) => {
-        const fname = prompt("Enter first name:");
-        const lname = prompt("Enter last name:");
-        const role = prompt("Enter role (1 for Super Admin, 2 for Admin):");
+        const userRow = document.getElementById(`user-${id}`);
+        const fname = userRow.querySelector(".fname").textContent.trim();
+        const lname = userRow.querySelector(".lname").textContent.trim();
+        const role = userRow.querySelector(".role").textContent.trim() === "Super Admin" ? "1" : "2";
 
-        const result = await sendRequest(API_ENDPOINTS.UPDATE, "POST", {
-            id,
-            fname,
-            lname,
-            role,
-        });
+        const newFname = prompt("Enter first name:", fname);
+        const newLname = prompt("Enter last name:", lname);
+        const newRole = prompt("Enter role (1 for Super Admin, 2 for Admin):", role);
 
-        if (result.status === "success") {
-            alert("User updated successfully!");
-            location.reload();
-        } else {
-            alert(`Error: ${result.message}`);
+        if (newFname && newLname && newRole) {
+            const result = await sendRequest(API_ENDPOINTS.UPDATE, "POST", {
+                id,
+                fname: newFname,
+                lname: newLname,
+                role: newRole,
+            });
+
+            if (result.status === "success") {
+                alert("User updated successfully!");
+                location.reload();
+            } else {
+                alert(`Error: ${result.message}`);
+            }
         }
     };
 
@@ -113,10 +120,11 @@
             const userRow = document.createElement("tr");
             userRow.id = `user-${user.id}`;
             userRow.innerHTML = `
-                <td>${sanitizeHTML(user.fname + " " + user.lname)}</td>
-                <td>${sanitizeHTML(user.email)}</td>
-                <td>${sanitizeHTML(user.userrole === "1" ? "Super Admin" : "Admin")}</td>
-                <td>${sanitizeHTML(user.created_at)}</td>
+                <td class="fname">${sanitizeHTML(user.fname)}</td>
+                <td class="lname">${sanitizeHTML(user.lname)}</td>
+                <td class="email">${sanitizeHTML(user.email)}</td>
+                <td class="role">${sanitizeHTML(user.userrole === "1" ? "Super Admin" : "Admin")}</td>
+                <td class="created_at">${sanitizeHTML(user.created_at)}</td>
                 <td>
                     <button onclick="editUser(${user.id})">Edit</button>
                     <button onclick="deleteUser(${user.id})">Delete</button>
